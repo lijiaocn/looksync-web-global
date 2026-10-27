@@ -1,0 +1,9 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [{
+      "appID": "58MCF6L59B.com.kecology.app.looksync.cn",
+      "paths": ["/app/*"]
+    }]
+  }
+}
