@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% include head.html %}
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  {% if jekyll.environment == "development" %}
+  <div class="env-badge" aria-hidden="true">dev</div>
+  {% elsif jekyll.environment == "emulator" %}
+  <div class="env-badge" aria-hidden="true">emulator</div>
+  {% endif %}
+
+  <div class="page">
+    {% include nav.html %}
+    {{ content }}
+    {% include footer.html %}
+  </div>
+
+  {% if page.work_overlay %}
+  <div class="work-overlay" id="work-overlay" hidden>
+    <div class="work-overlay-card">
+      <h2 class="work-overlay-title">Keep this page open</h2>
+      <p class="work-overlay-lede">We're uploading your photos and starting the try-on. Closing now may interrupt the process.</p>
+      <ol class="work-steps" id="work-steps">
+        <li data-step="signin"><span class="work-step-mark" aria-hidden="true"></span><span>Sign in</span></li>
+        <li data-step="look"><span class="work-step-mark" aria-hidden="true"></span><span>Upload the look</span></li>
+        <li data-step="photo"><span class="work-step-mark" aria-hidden="true"></span><span>Upload your photo</span></li>
+        <li data-step="start"><span class="work-step-mark" aria-hidden="true"></span><span>Start try-on</span></li>
+      </ol>
+    </div>
+  </div>
+  {% endif %}
+
+  {% include scripts.html %}
+</body>
+</html>

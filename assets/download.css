@@ -1,0 +1,424 @@
+/* Page-only styles. Nav / footer / atmosphere come from site.css. */
+:root {
+    --phone-radius: 36px;
+}
+
+/* ——— Hero ——— */
+.hero {
+    min-height: calc(100svh - 4.5rem);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+.hero-copy {
+    max-width: 32rem;
+}
+
+.brand {
+    font-family: "Sora", sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.75rem, 6vw, 4.25rem);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rise 0.9s ease-out both;
+}
+
+.hero h1 {
+    font-family: "Sora", sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    margin-bottom: 0.85rem;
+    color: var(--text);
+    animation: rise 0.9s ease-out 0.12s both;
+}
+
+.hero-lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    max-width: 28rem;
+    animation: rise 0.9s ease-out 0.22s both;
+}
+
+.cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    animation: rise 0.9s ease-out 0.32s both;
+}
+
+.btn-store {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.4rem;
+    border-radius: 14px;
+    background: #fff;
+    color: #111;
+    font-family: "Sora", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.btn-store:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(255, 123, 123, 0.25);
+}
+
+.btn-store svg {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.btn-store .btn-store-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    text-align: left;
+}
+
+.btn-store .btn-store-text small {
+    font-family: "Figtree", sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.btn-store .btn-store-text span {
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float-in 1.1s ease-out 0.2s both;
+}
+
+.phone {
+    position: relative;
+    width: min(280px, 70vw);
+    border-radius: var(--phone-radius);
+    padding: 10px;
+    background: linear-gradient(145deg, #2a2a32, #121216);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.08),
+        0 40px 80px rgba(0, 0, 0, 0.55),
+        0 0 60px rgba(255, 123, 123, 0.12),
+        0 0 80px rgba(106, 217, 201, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+.phone::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72px;
+    height: 18px;
+    background: #0a0a0c;
+    border-radius: 12px;
+    z-index: 2;
+}
+
+.phone img {
+    width: 100%;
+    border-radius: calc(var(--phone-radius) - 6px);
+    aspect-ratio: 1320 / 2868;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/* ——— Sections ——— */
+section {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+}
+
+.section-label {
+    font-family: "Sora", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.75rem;
+}
+
+.section-title {
+    font-family: "Sora", sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+}
+
+.section-lead {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 36rem;
+    margin-bottom: 3rem;
+}
+
+/* How it works */
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.step {
+    text-align: center;
+}
+
+.step-phone {
+    width: min(200px, 55vw);
+    margin: 0 auto 1.5rem;
+    border-radius: 28px;
+    padding: 8px;
+    background: linear-gradient(145deg, #2a2a32, #121216);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06),
+        0 24px 48px rgba(0, 0, 0, 0.4);
+    transition: transform 0.35s ease;
+}
+
+.step:hover .step-phone {
+    transform: translateY(-6px);
+}
+
+.step-phone img {
+    width: 100%;
+    border-radius: 22px;
+    aspect-ratio: 1320 / 2868;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    font-family: "Sora", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: var(--gradient);
+    color: #111;
+    margin-bottom: 0.65rem;
+}
+
+.step h3 {
+    font-family: "Sora", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.4rem;
+}
+
+.step p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 16rem;
+    margin: 0 auto;
+}
+
+/* Compare feature */
+.compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+}
+
+.compare-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.compare-visual .phone {
+    width: min(260px, 65vw);
+    animation: none;
+}
+
+.compare-copy .section-lead {
+    margin-bottom: 1.75rem;
+}
+
+.feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.feature-list li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    background: var(--gradient);
+}
+
+/* CTA band */
+.cta-band {
+    text-align: center;
+    padding: 5rem 1.5rem 4rem;
+    max-width: var(--max);
+    margin: 0 auto;
+}
+
+.cta-band .section-title {
+    margin-bottom: 0.75rem;
+}
+
+.cta-band .section-lead {
+    margin: 0 auto 2rem;
+}
+
+.cta-band .cta-row {
+    justify-content: center;
+}
+
+/* Reveal on scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ——— Animations ——— */
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float-in {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* ——— Responsive ——— */
+@media (max-width: 900px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        min-height: auto;
+        padding-top: 1.5rem;
+        gap: 2.5rem;
+    }
+
+    .hero-copy {
+        max-width: none;
+        margin: 0 auto;
+    }
+
+    .hero-lead {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cta-row {
+        justify-content: center;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .compare {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .compare-copy .section-lead {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .feature-list {
+        align-items: center;
+    }
+
+    .feature-list li {
+        justify-content: center;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .phone {
+        width: min(240px, 72vw);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}

@@ -1,0 +1,53 @@
+<script>
+(function () {
+  var CACHE_KEY = "ls.account";
+  var slot = document.getElementById("account-slot");
+  if (!slot) return;
+
+  function esc(s) {
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  try {
+    var raw = sessionStorage.getItem(CACHE_KEY);
+    if (raw === "guest") {
+      slot.innerHTML =
+        '<button class="btn btn-small btn-primary" data-act="signin">Sign in</button>';
+      return;
+    }
+
+    var user = raw ? JSON.parse(raw) : null;
+    if (user && user.uid) {
+      var name = (user.displayName || user.email || "Account").trim();
+      var initial = name.charAt(0).toUpperCase();
+      var avatar = user.photoURL
+        ? '<img src="' + esc(user.photoURL) + '" alt="" referrerpolicy="no-referrer">'
+        : '<span class="avatar-fallback">' + esc(initial) + "</span>";
+      var safeName = esc(name);
+      slot.dataset.accountUid = user.uid;
+      slot.innerHTML =
+        '<div class="account-menu">' +
+        '<button class="account-user" data-act="toggle" aria-haspopup="true" aria-expanded="false" title="' +
+        safeName +
+        '">' +
+        '<span class="avatar">' +
+        avatar +
+        "</span>" +
+        '<span class="account-name">' +
+        safeName +
+        "</span>" +
+        "</button>" +
+        '<div class="account-dropdown" hidden>' +
+        '<a href="{{ "/history.html" | relative_url }}">My try-ons</a>' +
+        '<a href="{{ "/profile.html" | relative_url }}">Account</a>' +
+        '<button data-act="signout">Sign out</button>' +
+        "</div>" +
+        "</div>";
+    }
+  } catch (e) {}
+})();
+</script>

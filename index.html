@@ -1,701 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LookSync — Sync any look to your face</title>
-    <meta name="description" content="See any makeup look on your own face instantly. Sync stunning styles to your photos with LookSync.">
-    <meta property="og:title" content="LookSync — Sync any look to your face">
-    <meta property="og:description" content="See any makeup look on your own face instantly. Sync stunning styles to your photos.">
-    <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0a0a0c;
-            --bg-elevated: #141418;
-            --text: #f4f4f5;
-            --text-muted: #9a9aa3;
-            --coral: #ff7b7b;
-            --teal: #6ad9c9;
-            --gradient: linear-gradient(90deg, var(--coral) 0%, var(--teal) 100%);
-            --max: 1120px;
-            --phone-radius: 36px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Figtree", sans-serif;
-            color: var(--text);
-            background: var(--bg);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* ——— Atmosphere ——— */
-        .atmosphere {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            background:
-                radial-gradient(ellipse 80% 50% at 15% -10%, rgba(255, 123, 123, 0.22), transparent 55%),
-                radial-gradient(ellipse 70% 45% at 90% 10%, rgba(106, 217, 201, 0.18), transparent 50%),
-                radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255, 123, 123, 0.08), transparent 60%),
-                var(--bg);
-        }
-
-        .noise {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.035;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
-
-        .page {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* ——— Nav ——— */
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 1.25rem 1.5rem;
-        }
-
-        .nav-brand {
-            font-family: "Sora", sans-serif;
-            font-weight: 700;
-            font-size: 1.15rem;
-            letter-spacing: -0.02em;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .nav-links a:hover {
-            color: var(--text);
-        }
-
-        /* ——— Hero ——— */
-        .hero {
-            min-height: calc(100svh - 4.5rem);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 3rem;
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 2rem 1.5rem 4rem;
-        }
-
-        .hero-copy {
-            max-width: 32rem;
-        }
-
-        .brand {
-            font-family: "Sora", sans-serif;
-            font-weight: 700;
-            font-size: clamp(2.75rem, 6vw, 4.25rem);
-            letter-spacing: -0.04em;
-            line-height: 1.05;
-            margin-bottom: 1.25rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: rise 0.9s ease-out both;
-        }
-
-        .hero h1 {
-            font-family: "Sora", sans-serif;
-            font-weight: 600;
-            font-size: clamp(1.5rem, 3.2vw, 2.1rem);
-            letter-spacing: -0.03em;
-            line-height: 1.25;
-            margin-bottom: 0.85rem;
-            color: var(--text);
-            animation: rise 0.9s ease-out 0.12s both;
-        }
-
-        .hero-lead {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            max-width: 28rem;
-            animation: rise 0.9s ease-out 0.22s both;
-        }
-
-        .cta-row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-            animation: rise 0.9s ease-out 0.32s both;
-        }
-
-        .btn-store {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.85rem 1.4rem;
-            border-radius: 14px;
-            background: #fff;
-            color: #111;
-            font-family: "Sora", sans-serif;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-        }
-
-        .btn-store:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(255, 123, 123, 0.25);
-        }
-
-        .btn-store svg {
-            width: 28px;
-            height: 28px;
-            flex-shrink: 0;
-        }
-
-        .btn-store .btn-store-text {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.15;
-            text-align: left;
-        }
-
-        .btn-store .btn-store-text small {
-            font-family: "Figtree", sans-serif;
-            font-weight: 500;
-            font-size: 0.7rem;
-            opacity: 0.7;
-        }
-
-        .btn-store .btn-store-text span {
-            font-size: 1.05rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: float-in 1.1s ease-out 0.2s both;
-        }
-
-        .phone {
-            position: relative;
-            width: min(280px, 70vw);
-            border-radius: var(--phone-radius);
-            padding: 10px;
-            background: linear-gradient(145deg, #2a2a32, #121216);
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.08),
-                0 40px 80px rgba(0, 0, 0, 0.55),
-                0 0 60px rgba(255, 123, 123, 0.12),
-                0 0 80px rgba(106, 217, 201, 0.1);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .phone::before {
-            content: "";
-            position: absolute;
-            top: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 72px;
-            height: 18px;
-            background: #0a0a0c;
-            border-radius: 12px;
-            z-index: 2;
-        }
-
-        .phone img {
-            width: 100%;
-            border-radius: calc(var(--phone-radius) - 6px);
-            aspect-ratio: 1320 / 2868;
-            object-fit: cover;
-            object-position: top center;
-        }
-
-        /* ——— Sections ——— */
-        section {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 5rem 1.5rem;
-        }
-
-        .section-label {
-            font-family: "Sora", sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.75rem;
-        }
-
-        .section-title {
-            font-family: "Sora", sans-serif;
-            font-weight: 600;
-            font-size: clamp(1.75rem, 3.5vw, 2.4rem);
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            margin-bottom: 0.75rem;
-        }
-
-        .section-lead {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 36rem;
-            margin-bottom: 3rem;
-        }
-
-        /* How it works */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .step {
-            text-align: center;
-        }
-
-        .step-phone {
-            width: min(200px, 55vw);
-            margin: 0 auto 1.5rem;
-            border-radius: 28px;
-            padding: 8px;
-            background: linear-gradient(145deg, #2a2a32, #121216);
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.06),
-                0 24px 48px rgba(0, 0, 0, 0.4);
-            transition: transform 0.35s ease;
-        }
-
-        .step:hover .step-phone {
-            transform: translateY(-6px);
-        }
-
-        .step-phone img {
-            width: 100%;
-            border-radius: 22px;
-            aspect-ratio: 1320 / 2868;
-            object-fit: cover;
-            object-position: top center;
-        }
-
-        .step-num {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 1.75rem;
-            height: 1.75rem;
-            border-radius: 50%;
-            font-family: "Sora", sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            background: var(--gradient);
-            color: #111;
-            margin-bottom: 0.65rem;
-        }
-
-        .step h3 {
-            font-family: "Sora", sans-serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.4rem;
-        }
-
-        .step p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            max-width: 16rem;
-            margin: 0 auto;
-        }
-
-        /* Compare feature */
-        .compare {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3.5rem;
-            align-items: center;
-        }
-
-        .compare-visual {
-            display: flex;
-            justify-content: center;
-        }
-
-        .compare-visual .phone {
-            width: min(260px, 65vw);
-            animation: none;
-        }
-
-        .compare-copy .section-lead {
-            margin-bottom: 1.75rem;
-        }
-
-        .feature-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
-
-        .feature-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        .feature-list li::before {
-            content: "";
-            flex-shrink: 0;
-            width: 8px;
-            height: 8px;
-            margin-top: 0.5rem;
-            border-radius: 50%;
-            background: var(--gradient);
-        }
-
-        /* CTA band */
-        .cta-band {
-            text-align: center;
-            padding: 5rem 1.5rem 4rem;
-            max-width: var(--max);
-            margin: 0 auto;
-        }
-
-        .cta-band .section-title {
-            margin-bottom: 0.75rem;
-        }
-
-        .cta-band .section-lead {
-            margin: 0 auto 2rem;
-        }
-
-        .cta-band .cta-row {
-            justify-content: center;
-        }
-
-        /* Footer */
-        .footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 2rem 1.5rem;
-            max-width: var(--max);
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-            color: var(--text-muted);
-            font-size: 0.875rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 1.25rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--text);
-        }
-
-        /* Reveal on scroll */
-        .reveal {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ——— Animations ——— */
-        @keyframes rise {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float-in {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.96);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-
-        /* ——— Responsive ——— */
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                min-height: auto;
-                padding-top: 1.5rem;
-                gap: 2.5rem;
-            }
-
-            .hero-copy {
-                max-width: none;
-                margin: 0 auto;
-            }
-
-            .hero-lead {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .cta-row {
-                justify-content: center;
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .compare {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-                text-align: center;
-            }
-
-            .compare-copy .section-lead {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .feature-list {
-                align-items: center;
-            }
-
-            .feature-list li {
-                justify-content: center;
-                text-align: left;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.8rem;
-            }
-
-            .phone {
-                width: min(240px, 72vw);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation: none !important;
-                transition: none !important;
-            }
-
-            .reveal {
-                opacity: 1;
-                transform: none;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="atmosphere" aria-hidden="true"></div>
-    <div class="noise" aria-hidden="true"></div>
-
-    <div class="page">
-        <nav class="nav">
-            <a href="index.html" class="nav-brand">LookSync</a>
-            <div class="nav-links">
-                <a href="index.html" aria-current="page">Home</a>
-                <a href="support.html">Support</a>
-                <a href="privacy.html">Privacy</a>
-            </div>
-        </nav>
-
-        <header class="hero">
-            <div class="hero-copy">
-                <p class="brand">LookSync</p>
-                <h1>Sync any look to your face</h1>
-                <p class="hero-lead">See makeup, hair, and style from any photo — instantly on you.</p>
-                <div class="cta-row">
-                    <a class="btn-store" href="https://apps.apple.com/us/app/looksync/id6756872054" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 16.97 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
-                        </svg>
-                        <span class="btn-store-text">
-                            <small>Download on the</small>
-                            <span>App Store</span>
-                        </span>
-                    </a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="phone">
-                    <img src="assets/screenshots/step5-result.jpg" alt="LookSync try-on result showing a red hat synced onto a photo" width="900" height="1955" fetchpriority="high">
-                </div>
-            </div>
-        </header>
-
-        <section class="how" id="how">
-            <p class="section-label reveal">How it works</p>
-            <h2 class="section-title reveal">Three steps. One new look.</h2>
-            <p class="section-lead reveal">Pick a reference, choose your photo, then decide what to try on — makeup, hair, hat, and more.</p>
-
-            <div class="steps">
-                <article class="step reveal">
-                    <div class="step-phone">
-                        <img src="assets/screenshots/step1-origin.jpg" alt="Choose a look to try on" width="900" height="1955" loading="lazy">
-                    </div>
-                    <span class="step-num">1</span>
-                    <h3>Choose a Look</h3>
-                    <p>Pick any makeup or style photo you love as your reference.</p>
-                </article>
-                <article class="step reveal">
-                    <div class="step-phone">
-                        <img src="assets/screenshots/step2-reference.jpg" alt="Choose your photo" width="900" height="1955" loading="lazy">
-                    </div>
-                    <span class="step-num">2</span>
-                    <h3>Add Your Photo</h3>
-                    <p>Select a clear photo of yourself from your library.</p>
-                </article>
-                <article class="step reveal">
-                    <div class="step-phone">
-                        <img src="assets/screenshots/step3-option.jpg" alt="Select what to try on" width="900" height="1955" loading="lazy">
-                    </div>
-                    <span class="step-num">3</span>
-                    <h3>Start Try-on</h3>
-                    <p>Sync the full look — or just hair, lips, hat, and more.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="compare-section">
-            <div class="compare">
-                <div class="compare-visual reveal">
-                    <div class="phone">
-                        <img src="assets/screenshots/step6-compare.jpg" alt="Before and after comparison slider in LookSync" width="900" height="1955" loading="lazy">
-                    </div>
-                </div>
-                <div class="compare-copy">
-                    <p class="section-label reveal">Compare</p>
-                    <h2 class="section-title reveal">Slide to see the difference</h2>
-                    <p class="section-lead reveal">Original vs. result, side by side. Share the look you love with friends.</p>
-                    <ul class="feature-list reveal">
-                        <li>Granular try-on — pick brows, eyes, hair, accessories, or full look</li>
-                        <li>Side-by-side and vertical compare views</li>
-                        <li>Your photos stay on your device</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <div class="cta-band">
-            <h2 class="section-title reveal">Ready to sync your look?</h2>
-            <p class="section-lead reveal">Free to download on iPhone and iPad.</p>
-            <div class="cta-row reveal">
-                <a class="btn-store" href="https://apps.apple.com/us/app/looksync/id6756872054" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 16.97 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
-                    </svg>
-                    <span class="btn-store-text">
-                        <small>Download on the</small>
-                        <span>App Store</span>
-                    </span>
-                </a>
-            </div>
+---
+layout: default
+title: Virtual Makeup Try-On — Try Any Look on Yourself | LookSync
+description: Try on makeup, hairstyles, and accessories from any photo. Pick a look, add your photo, and see it on yourself in about a minute — in your browser or the iOS app.
+canonical: https://looksync.app/
+og_title: Virtual Makeup Try-On — Try Any Look on Yourself
+og_description: Pick a look, add your photo, and see makeup, hair, and style synced onto you.
+og_url: https://looksync.app/
+twitter_title: Virtual Makeup Try-On — LookSync
+twitter_description: See any makeup look, hairstyle, or accessory on yourself — in the browser or the app.
+nav: try-on
+scripts: app
+page_js: /js/pages/index.js
+head_include: index-head.html
+work_overlay: true
+---
+<header class="workbench">
+  <div class="workbench-head">
+    <h1><span class="h1-accent">Sync</span> any look onto yourself</h1>
+    <p class="workbench-lede">Makeup, hair, or style from a photo — see it on you in about a minute.</p>
+  </div>
+
+  <div class="workbench-panels">
+    <div class="panel-col">
+      <p class="panel-label">The look to sync</p>
+      <div class="dropzone" id="picker-reference">
+        <input type="file" accept="image/*" aria-label="Upload a reference look">
+        <div class="dropzone-preview" aria-hidden="true"></div>
+        <div class="dropzone-prompt">
+          <span class="dz-icon">＋</span>
+          <strong>Add the look</strong>
+          <p>Click or drop an image</p>
         </div>
-
-        <footer class="footer">
-            <p>&copy; 2026 LookSync</p>
-            <div class="footer-links">
-                <a href="support.html">Support</a>
-                <a href="privacy.html">Privacy Policy</a>
-            </div>
-        </footer>
+        <button type="button" class="dropzone-clear" data-act="clear" aria-label="Remove image">×</button>
+      </div>
     </div>
 
-    <script>
-        const reveals = document.querySelectorAll(".reveal");
-        if ("IntersectionObserver" in window) {
-            const io = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("visible");
-                            io.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-            );
-            reveals.forEach((el) => io.observe(el));
-        } else {
-            reveals.forEach((el) => el.classList.add("visible"));
-        }
-    </script>
-</body>
-</html>
+    <div class="panels-arrow" aria-hidden="true">→</div>
+
+    <div class="panel-col">
+      <p class="panel-label">Your photo to try it on</p>
+      <div class="dropzone" id="picker-original">
+        <input type="file" accept="image/*" aria-label="Upload your photo">
+        <div class="dropzone-preview" aria-hidden="true"></div>
+        <div class="dropzone-prompt">
+          <span class="dz-icon">＋</span>
+          <strong>Add your photo</strong>
+          <p>Click or drop an image</p>
+        </div>
+        <button type="button" class="dropzone-clear" data-act="clear" aria-label="Remove image">×</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="workbench-controls">
+    <div class="controls-scopes">
+      <p class="controls-label">What to sync</p>
+      <div class="chip-row" id="scope-chips">
+        <span class="muted">Loading options…</span>
+      </div>
+    </div>
+    <div class="controls-cta">
+      <button class="btn btn-primary" id="start-btn">Start try-on</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="seo-section" id="how">
+    <p class="eyebrow">How it works</p>
+    <h2>Two photos in, one look out</h2>
+    <ol class="steps-row">
+      <li>
+        <span class="step-n">1</span>
+        <div>
+          <h3>Pick a look</h3>
+          <p>Any photo works — a makeup look, a hair color, glasses you keep eyeing.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-n">2</span>
+        <div>
+          <h3>Add your photo</h3>
+          <p>Clear and front-facing is best. A phone selfie is fine.</p>
+        </div>
+      </li>
+      <li>
+        <span class="step-n">3</span>
+        <div>
+          <h3>Sync what you want</h3>
+          <p>Whole look, or just lips, eyes, or hair. Hit start — most results land in under a minute.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="seo-section" id="faq">
+    <p class="eyebrow">FAQ</p>
+    <h2>Before you ask</h2>
+    <div class="faq-list">
+      <article class="faq-item">
+        <h3>Can I try makeup from a photo?</h3>
+        <p>Yes. Use any photo as the look, add a clear photo of yourself, and LookSync puts that makeup on you. Sync the whole look or just lips, eyes, hair — your call.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Is my photo private?</h3>
+        <p>Only you can see your photos and results. They're deleted automatically after 7 days, and you can delete them sooner anytime. Details in the <a href="{{ '/privacy.html' | relative_url }}#uploaded-photos">Privacy Policy</a>.</p>
+      </article>
+      <article class="faq-item">
+        <h3>Does it work in the browser?</h3>
+        <p>Yes, on desktop and mobile — nothing to install. There's also an <a href="{{ '/download.html' | relative_url }}">iOS app</a> if you'd rather use that.</p>
+      </article>
+    </div>
+  </section>
+</main>

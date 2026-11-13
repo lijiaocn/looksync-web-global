@@ -1,2 +1,11 @@
-# Source screenshots (use assets/screenshots/ on the site)
 ignore_material/
+.DS_Store
+node_modules/
+dist/
+_site/
+.jekyll-cache/
+.jekyll-metadata/
+vendor/
+.bundle/
+*.log
+

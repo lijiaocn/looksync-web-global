@@ -1,0 +1,38 @@
+<script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.1.0/firebase-functions-compat.js"></script>
+
+<script>
+  window.LookSync = window.LookSync || {};
+  LookSync.JEKYLL_ENV = {{ jekyll.environment | jsonify }};
+</script>
+<script src="{{ '/js/config/env.js' | relative_url }}"></script>
+<script src="{{ '/js/config/firebase-config.js' | relative_url }}"></script>
+<script src="{{ '/js/services/firebase.js' | relative_url }}"></script>
+<script src="{{ '/js/services/callable.js' | relative_url }}"></script>
+
+{% if page.scripts == 'app' %}
+<script src="{{ '/js/services/image.js' | relative_url }}"></script>
+<script src="{{ '/js/services/auth.js' | relative_url }}"></script>
+<script src="{{ '/js/services/user.js' | relative_url }}"></script>
+<script src="{{ '/js/services/syncs.js' | relative_url }}"></script>
+<script src="{{ '/js/services/upload.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/toast.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/dialog.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/auth-state.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/header.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/image-picker.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/scope-selector.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/compare-slider.js' | relative_url }}"></script>
+{% else %}
+<script src="{{ '/js/services/auth.js' | relative_url }}"></script>
+<script src="{{ '/js/services/user.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/toast.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/auth-state.js' | relative_url }}"></script>
+<script src="{{ '/js/ui/header.js' | relative_url }}"></script>
+<script src="{{ '/js/pages/shell.js' | relative_url }}"></script>
+{% endif %}
+
+{% if page.page_js %}
+<script src="{{ page.page_js | relative_url }}"></script>
+{% endif %}

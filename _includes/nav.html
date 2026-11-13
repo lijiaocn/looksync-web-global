@@ -1,0 +1,25 @@
+<nav class="nav">
+  <div class="nav-brand-cluster">
+    <a href="{{ '/' | relative_url }}" class="nav-brand">
+      <span class="nav-brand-text">LookSync</span>
+    </a>
+    <a class="nav-get-app" href="{{ '/download.html' | relative_url }}"{% if page.nav == 'download' %} aria-current="page"{% endif %}>
+      <svg class="nav-get-app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 4v10"></path>
+        <path d="M8 10l4 4 4-4"></path>
+        <path d="M5 18h14"></path>
+      </svg>
+      <span>Get the app</span>
+    </a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="{{ '/' | relative_url }}"{% if page.nav == 'try-on' %} aria-current="page"{% endif %}>Home</a>
+      <a href="{{ '/purchase.html' | relative_url }}"{% if page.nav == 'pricing' %} aria-current="page"{% endif %}>Pricing</a>
+      <a href="{{ '/history.html' | relative_url }}"{% if page.nav == 'history' %} aria-current="page"{% endif %}>History</a>
+      <a href="{{ '/support.html' | relative_url }}"{% if page.nav == 'support' %} aria-current="page"{% endif %}>Support</a>
+    </div>
+    <div class="account-slot" id="account-slot"></div>
+    {% include account-boot.html %}
+  </div>
+</nav>

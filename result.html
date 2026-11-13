@@ -1,0 +1,39 @@
+---
+layout: default
+title: Your try-on — LookSync
+description: Your private LookSync try-on result.
+robots: noindex, nofollow
+scripts: app
+page_js: /js/pages/result.js
+---
+<main class="app-main" id="result-root">
+  <div class="result-head">
+    <a class="result-head-credits" href="purchase.html" aria-label="Get more credits">
+      <svg class="result-head-credits-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none"></circle>
+        <circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none"></circle>
+        <path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.5L21 8H7"></path>
+      </svg>
+      <span>Credits</span>
+    </a>
+    <div class="result-tabs" role="tablist">
+      <button class="result-tab active" type="button" data-view="result" disabled>Result</button>
+      <button class="result-tab" type="button" data-view="compare" disabled>Compare</button>
+      <button class="result-tab" type="button" data-view="original" disabled>Original</button>
+      <button class="result-tab" type="button" data-view="look" disabled>Look</button>
+    </div>
+  </div>
+  <div class="result-stage" id="result-stage">
+    <div class="result-slot">
+      <div class="result-spacer" aria-hidden="true"></div>
+      <div class="result-status" id="result-status">
+        <div class="spinner" aria-hidden="true"></div>
+        <p class="result-status-title">Loading your try-on…</p>
+      </div>
+      <div class="result-media"></div>
+    </div>
+  </div>
+  <div class="result-actions">
+    <a class="btn btn-primary" href="./">Continue try-on</a>
+  </div>
+</main>

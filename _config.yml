@@ -1,0 +1,20 @@
+title: LookSync
+description: Try on makeup, hairstyles, and accessories from any photo.
+url: https://looksync.app
+baseurl: ""
+
+# Keep existing *.html URLs (canonicals / sitemap / app links).
+permalink: /:path:output_ext
+
+exclude:
+  - README.md
+  - WEB_STATIC_SEO_PLAN.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .gitignore
+  - .github
+  - "*.sh"
+
+include:
+  - .well-known

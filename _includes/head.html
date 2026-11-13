@@ -1,0 +1,28 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title }}</title>
+{% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+{% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
+{% if page.canonical %}<link rel="canonical" href="{{ page.canonical }}">{% endif %}
+
+{% if page.og_title %}
+<meta property="og:title" content="{{ page.og_title }}">
+<meta property="og:description" content="{{ page.og_description | default: page.description }}">
+<meta property="og:type" content="{{ page.og_type | default: 'website' }}">
+{% if page.og_url %}<meta property="og:url" content="{{ page.og_url }}">{% endif %}
+<meta property="og:image" content="{{ page.og_image | default: 'https://looksync.app/assets/screenshots/step5-result.jpg' }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page.twitter_title | default: page.og_title }}">
+<meta name="twitter:description" content="{{ page.twitter_description | default: page.og_description | default: page.description }}">
+<meta name="twitter:image" content="{{ page.og_image | default: 'https://looksync.app/assets/screenshots/step5-result.jpg' }}">
+{% endif %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/app.css' | relative_url }}">
+{% for sheet in page.extra_css %}
+<link rel="stylesheet" href="{{ sheet | relative_url }}">
+{% endfor %}
+{% if page.head_include %}{% include {{ page.head_include }} %}{% endif %}
