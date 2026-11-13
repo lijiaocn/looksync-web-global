@@ -39,7 +39,7 @@
       <div class="result-gate">
         <h1>Sign in to see your try-ons</h1>
         <p>Your history is private to your account. Results are kept for 7 days.</p>
-        <button class="btn btn-primary" id="gate-signin">Sign in with Google</button>
+        <button class="btn btn-primary" id="gate-signin">Sign in</button>
       </div>`;
     document.getElementById("gate-signin").onclick = async () => {
       try {

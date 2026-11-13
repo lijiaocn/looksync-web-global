@@ -14,6 +14,10 @@
     return LS.call("user-getMyCreditLog", { page, pageSize });
   };
 
+  LS.getMyOrders = function (page, pageSize) {
+    return LS.call("user-getMyOrder", { page, pageSize });
+  };
+
   LS.deleteMyAccount = function () {
     return LS.call("user-deleteMyAccount");
   };

@@ -54,12 +54,19 @@
 
   LS.formatAuthError = function (err) {
     if (looksLikeNetworkAuthError(err) || (state.ready && state.authOk === false)) {
-      return "Can't reach Google Sign-In right now. Check your network and try again.";
+      return "Can't reach sign-in right now. Check your network and try again.";
     }
     const code = String(err?.code || "");
     if (code.includes("popup-closed") || code.includes("cancelled")) {
       return "Sign-in was cancelled.";
     }
+    if (code.includes("invalid-email")) return "That email doesn't look valid.";
+    if (code.includes("user-not-found") || code.includes("invalid-credential") || code.includes("wrong-password")) {
+      return "Email or password is incorrect.";
+    }
+    if (code.includes("email-already-in-use")) return "That email already has an account. Sign in instead.";
+    if (code.includes("weak-password")) return "Use a password with at least 6 characters.";
+    if (code.includes("too-many-requests")) return "Too many attempts. Wait a moment and try again.";
     return err?.message || "Sign-in failed. Please try again.";
   };
 
@@ -109,16 +116,16 @@
     if (state.user) await loadBalance();
   };
 
-  // The only login gate. Already signed in → pass through; otherwise Google popup.
+  // The only login gate. Already signed in → pass through; otherwise show chooser.
   LS.ensureSignedIn = async function () {
     if (state.user) return state.user;
     if (state.ready && state.authOk === false) {
-      const err = new Error("Can't reach Google Sign-In right now. Check your network and try again.");
+      const err = new Error("Can't reach sign-in right now. Check your network and try again.");
       err.code = "auth/network-request-failed";
       throw err;
     }
     try {
-      const cred = await LS.signInWithGoogle();
+      const cred = await LS.promptSignIn();
       state = { user: cred.user, balance: null, ready: true, authOk: true };
       notify();
       await loadBalance();

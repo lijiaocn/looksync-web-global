@@ -347,6 +347,19 @@ img {
     font-size: 0.875rem;
 }
 
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.footer-company {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    max-width: 28rem;
+}
+
 .footer-links {
     display: flex;
     gap: 1.25rem;

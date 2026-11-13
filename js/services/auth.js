@@ -1,11 +1,19 @@
-// Google sign-in wrappers over the compat auth instance.
+// Sign-in wrappers over the compat auth instance.
 (function () {
   const LS = (window.LookSync = window.LookSync || {});
 
-  const provider = new firebase.auth.GoogleAuthProvider();
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
 
   LS.signInWithGoogle = function () {
-    return LS.auth.signInWithPopup(provider);
+    return LS.auth.signInWithPopup(googleProvider);
+  };
+
+  LS.signInWithEmail = function (email, password) {
+    return LS.auth.signInWithEmailAndPassword(email, password);
+  };
+
+  LS.createAccountWithEmail = function (email, password) {
+    return LS.auth.createUserWithEmailAndPassword(email, password);
   };
 
   LS.signOut = function () {

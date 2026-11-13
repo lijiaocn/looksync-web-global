@@ -57,7 +57,7 @@
       <div class="result-gate">
         <h1>Sign in to see your try-on</h1>
         <p>Your photos and results are private to your account.</p>
-        <button class="btn btn-primary" id="gate-signin">Sign in with Google</button>
+        <button class="btn btn-primary" id="gate-signin">Sign in</button>
       </div>`;
     document.getElementById("gate-signin").onclick = async () => {
       try {

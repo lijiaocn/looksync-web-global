@@ -34,18 +34,19 @@
         return;
       }
 
-      if (readCachedUser()) {
-        bindSignedIn(slot);
-        return;
-      }
-
       if (!state.user) {
         writeGuest();
         ensureSignIn(slot);
         return;
       }
 
+      const cached = readCachedUser();
+      const sameUser = cached && cached.uid === state.user.uid;
       writeCachedUser(state.user);
+      if (sameUser && slot.dataset.accountUid === state.user.uid && slot.querySelector(".account-user")) {
+        bindSignedIn(slot);
+        return;
+      }
       renderSignedIn(slot, state.user);
     });
   };
