@@ -17,6 +17,11 @@
 <meta name="twitter:image" content="{{ page.og_image | default: 'https://looksync.app/assets/screenshots/step5-result.jpg' }}">
 {% endif %}
 
+<link rel="icon" href="{{ '/favicon.ico' | relative_url }}?v={{ site.asset_version }}" sizes="any">
+<link rel="icon" type="image/png" href="{{ '/assets/favicon-32.png' | relative_url }}?v={{ site.asset_version }}" sizes="32x32">
+<link rel="icon" type="image/png" href="{{ '/assets/favicon-16.png' | relative_url }}?v={{ site.asset_version }}" sizes="16x16">
+<link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}?v={{ site.asset_version }}">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
