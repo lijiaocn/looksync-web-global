@@ -20,9 +20,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/assets/app.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}?v={{ site.asset_version }}">
+<link rel="stylesheet" href="{{ '/assets/app.css' | relative_url }}?v={{ site.asset_version }}">
 {% for sheet in page.extra_css %}
-<link rel="stylesheet" href="{{ sheet | relative_url }}">
+<link rel="stylesheet" href="{{ sheet | relative_url }}?v={{ site.asset_version }}">
 {% endfor %}
 {% if page.head_include %}{% include {{ page.head_include }} %}{% endif %}

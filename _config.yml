@@ -3,6 +3,9 @@ description: Try on makeup, hairstyles, and accessories from any photo.
 url: https://looksync.app
 baseurl: ""
 
+# Bump when local CSS/JS change to bust browser cache.
+asset_version: "20261115"
+
 # Keep existing *.html URLs (canonicals / sitemap / app links).
 permalink: /:path:output_ext
 
