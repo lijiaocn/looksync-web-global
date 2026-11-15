@@ -7,7 +7,7 @@ LookSync 的 Web 版试妆站（looksync.app）。**Jekyll 静态站**：布局 
 
 - **Jekyll**：`_layouts/default.html` + `_includes/{head,nav,footer,scripts}`；各页 front matter 声明
   标题、SEO、`nav` 高亮、脚本包（`app` / `shell`）。
-- 输出仍是多页 HTML，路径保持 `/download.html` 等（与现有 canonical / sitemap 一致；旧 `/about.html` 重定向到 download）。
+- 输出仍是多页 HTML；`_posts` 页用无后缀 permalink（`/download` 等）；旧 `/about.html` 重定向到 download。
 - Firebase 走官方 **compat CDN**（11.1.0）+ 经典 `<script>`；业务挂在 `window.LookSync`。
 - 部署：GitHub Actions 跑 `jekyll build`，把 `_site/` 上传到 GitHub Pages。
 
@@ -40,14 +40,17 @@ python3 -m http.server 8080 --directory _site
 | 源文件 | URL | 脚本包 | 登录 | 收录 |
 |---|---|---|---|---|
 | `index.html` | `/` | app | 仅「开始试妆」 | index |
-| `download.html` | `/download.html` | shell | 顶栏账户 | index |
+| `_posts/*-download.html` | `/download` | shell | 顶栏账户 | index |
+| `_posts/*-cn-download.html` | `/cn/download` | shell | 顶栏账户 | index（大陆 App 下载页） |
 | `about.html` | `/about.html` | — | — | 重定向到 download |
-| `purchase.html` | `/purchase.html` | app | 顶栏账户 | index |
+| `_posts/*-purchase.html` | `/purchase` | app | 顶栏账户 | index |
 | `result.html` | `/result.html?id=` | app | 是 | noindex |
-| `profile.html` | `/profile.html` | app | 是 | noindex |
+| `_posts/*-profile.html` | `/profile` | app | 是 | noindex |
 | `history.html` | `/history.html` | app | 是 | noindex |
-| `privacy.html` | `/privacy.html` | shell | 顶栏账户 | index |
-| `support.html` | `/support.html` | shell | 顶栏账户 | index |
+| `_posts/*-privacy.html` | `/privacy` | shell | 顶栏账户 | index |
+| `_posts/*-cn-privacy.html` | `/cn/privacy` | shell | 顶栏账户 | index（大陆隐私政策） |
+| `_posts/*-support.html` | `/support` | shell | 顶栏账户 | index |
+| `_posts/*-cn-support.html` | `/cn/support` | shell | 顶栏账户 | index（大陆技术支持） |
 
 Front matter 常用字段：`title` / `description` / `nav`（`try-on`|`about`|`pricing`）/
 `scripts`（`app`|`shell`）/ `page_js` / `extra_css` / `robots` / `canonical`。
@@ -58,9 +61,10 @@ Front matter 常用字段：`title` / `description` / `nav`（`try-on`|`about`|`
 _config.yml
 _layouts/default.html
 _includes/          # head / nav / footer / scripts / index-head
+_posts/             # download / privacy / profile / purchase / support（permalink 无 .html 后缀）
 js/                 # config → services → ui → pages（不变）
 assets/             # site.css / app.css / download.css / screenshots
-*.html              # 仅 front matter + 页面正文
+*.html              # 首页等：仅 front matter + 页面正文
 robots.txt  sitemap.xml
 .well-known/
 ```

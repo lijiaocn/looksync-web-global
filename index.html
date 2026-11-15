@@ -21,33 +21,45 @@ work_overlay: true
   </div>
 
   <div class="workbench-panels">
-    <div class="panel-col">
-      <p class="panel-label">The look to sync</p>
-      <div class="dropzone" id="picker-reference">
-        <input type="file" accept="image/*" aria-label="Upload a reference look">
-        <div class="dropzone-preview" aria-hidden="true"></div>
-        <div class="dropzone-prompt">
-          <span class="dz-icon">＋</span>
-          <strong>Add the look</strong>
-          <p>Click or drop an image</p>
-        </div>
-        <button type="button" class="dropzone-clear" data-act="clear" aria-label="Remove image">×</button>
-      </div>
+    <div class="workbench-panels-top">
+      <a class="workbench-get-app" href="{{ '/download' | relative_url }}">
+        <svg class="workbench-get-app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 4v10"></path>
+          <path d="M8 10l4 4 4-4"></path>
+          <path d="M5 18h14"></path>
+        </svg>
+        <span>Get the mobile app</span>
+      </a>
     </div>
-
-    <div class="panels-arrow" aria-hidden="true">→</div>
-
-    <div class="panel-col">
-      <p class="panel-label">Your photo to try it on</p>
-      <div class="dropzone" id="picker-original">
-        <input type="file" accept="image/*" aria-label="Upload your photo">
-        <div class="dropzone-preview" aria-hidden="true"></div>
-        <div class="dropzone-prompt">
-          <span class="dz-icon">＋</span>
-          <strong>Add your photo</strong>
-          <p>Click or drop an image</p>
+    <div class="workbench-panels-body">
+      <div class="panel-col">
+        <p class="panel-label">The look to sync</p>
+        <div class="dropzone" id="picker-reference">
+          <input type="file" accept="image/*" aria-label="Upload a reference look">
+          <div class="dropzone-preview" aria-hidden="true"></div>
+          <div class="dropzone-prompt">
+            <span class="dz-icon">＋</span>
+            <strong>Add the look</strong>
+            <p>Click or drop an image</p>
+          </div>
+          <button type="button" class="dropzone-clear" data-act="clear" aria-label="Remove image">×</button>
         </div>
-        <button type="button" class="dropzone-clear" data-act="clear" aria-label="Remove image">×</button>
+      </div>
+
+      <div class="panels-arrow" aria-hidden="true">→</div>
+
+      <div class="panel-col">
+        <p class="panel-label">Your photo to try it on</p>
+        <div class="dropzone" id="picker-original">
+          <input type="file" accept="image/*" aria-label="Upload your photo">
+          <div class="dropzone-preview" aria-hidden="true"></div>
+          <div class="dropzone-prompt">
+            <span class="dz-icon">＋</span>
+            <strong>Add your photo</strong>
+            <p>Click or drop an image</p>
+          </div>
+          <button type="button" class="dropzone-clear" data-act="clear" aria-label="Remove image">×</button>
+        </div>
       </div>
     </div>
   </div>
@@ -104,11 +116,11 @@ work_overlay: true
       </article>
       <article class="faq-item">
         <h3>Is my photo private?</h3>
-        <p>Only you can see your photos and results. They're deleted automatically after 7 days, and you can delete them sooner anytime. Details in the <a href="{{ '/privacy.html' | relative_url }}#uploaded-photos">Privacy Policy</a>.</p>
+        <p>Only you can see your photos and results. They're deleted automatically after 7 days, and you can delete them sooner anytime. Details in the <a href="{{ '/privacy' | relative_url }}#uploaded-photos">Privacy Policy</a>.</p>
       </article>
       <article class="faq-item">
         <h3>Does it work in the browser?</h3>
-        <p>Yes, on desktop and mobile — nothing to install. There's also an <a href="{{ '/download.html' | relative_url }}">iOS app</a> if you'd rather use that.</p>
+        <p>Yes, on desktop and mobile — nothing to install. There's also an <a href="{{ '/download' | relative_url }}">iOS app</a> if you'd rather use that.</p>
       </article>
     </div>
   </section>

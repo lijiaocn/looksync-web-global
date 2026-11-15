@@ -6,22 +6,37 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://looksync.app/download.html</loc>
+    <loc>https://looksync.app/download</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://looksync.app/purchase.html</loc>
+    <loc>https://looksync.app/purchase</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://looksync.app/privacy.html</loc>
+    <loc>https://looksync.app/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://looksync.app/support.html</loc>
+    <loc>https://looksync.app/support</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://looksync.app/cn/download</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://looksync.app/cn/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://looksync.app/cn/support</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

@@ -144,38 +144,6 @@ img {
     background: var(--gradient);
 }
 
-/* Cross-platform CTA next to brand — chip, stronger than a text link. */
-.nav-get-app {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.38rem 0.75rem 0.38rem 0.6rem;
-    border-radius: 999px;
-    border: 1px solid rgba(106, 217, 201, 0.5);
-    background: rgba(106, 217, 201, 0.14);
-    color: var(--teal);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    line-height: 1;
-    white-space: nowrap;
-    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.nav-get-app-icon {
-    width: 0.95rem;
-    height: 0.95rem;
-    flex-shrink: 0;
-}
-
-.nav-get-app:hover,
-.nav-get-app[aria-current="page"] {
-    background: rgba(106, 217, 201, 0.24);
-    border-color: rgba(106, 217, 201, 0.75);
-    color: #8eebdd;
-    box-shadow: 0 0 0 3px rgba(106, 217, 201, 0.12);
-}
-
 .nav-links {
     display: flex;
     flex-wrap: wrap;
@@ -210,7 +178,20 @@ img {
 }
 
 .doc-header {
+    position: relative;
     margin-bottom: 2.5rem;
+}
+
+.doc-header:has(.locale-switch) {
+    padding-right: min(48%, 16rem);
+}
+
+.doc-header--switch-only {
+    max-width: var(--max);
+    width: 100%;
+    margin: 0 auto 0.5rem;
+    padding: 0.75rem 1.5rem 0;
+    min-height: 1.5rem;
 }
 
 .doc-label {
@@ -238,6 +219,30 @@ img {
 .doc-header p {
     color: var(--text-muted);
     font-size: 1.05rem;
+}
+
+.doc-header .locale-switch {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    max-width: 15rem;
+    text-align: right;
+    font-family: "Sora", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+}
+
+.doc-header .locale-switch a {
+    color: var(--text-muted);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.doc-header .locale-switch a:hover {
+    color: var(--text);
 }
 
 .doc-section {
@@ -349,15 +354,15 @@ img {
 
 .footer-brand {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.75rem;
     min-width: 0;
 }
 
 .footer-company {
     font-size: 0.8rem;
     line-height: 1.4;
-    max-width: 28rem;
 }
 
 .footer-links {

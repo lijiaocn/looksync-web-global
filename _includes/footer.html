@@ -1,13 +1,21 @@
 <footer class="footer">
   <div class="footer-brand">
     <p>&copy; 2026 LookSync</p>
-    <p class="footer-company">Beijing Qianlang Qiuzhi Technology Co., Ltd.</p>
+    {% if page.locale == 'cn' %}
+    <p class="footer-company">北京前浪求知科技有限公司</p>
+    {% else %}
+    <p class="footer-company">Qianlang Qiuzhi Technology Co., Ltd.</p>
+    {% endif %}
   </div>
   <div class="footer-links">
-    <a href="{{ '/' | relative_url }}">Try on web</a>
-    <a href="{{ '/download.html' | relative_url }}">Get the app</a>
-    <a href="{{ '/purchase.html' | relative_url }}">Pricing</a>
-    <a href="{{ '/support.html' | relative_url }}">Support</a>
-    <a href="{{ '/privacy.html' | relative_url }}">Privacy</a>
+    {% if page.locale == 'cn' %}
+    <a href="{{ '/cn/download' | relative_url }}">下载</a>
+    <a href="{{ '/cn/support' | relative_url }}">支持</a>
+    <a href="{{ '/cn/privacy' | relative_url }}">隐私</a>
+    {% else %}
+    <a href="{{ '/download' | relative_url }}">Download</a>
+    <a href="{{ '/support' | relative_url }}">Support</a>
+    <a href="{{ '/privacy' | relative_url }}">Privacy</a>
+    {% endif %}
   </div>
 </footer>

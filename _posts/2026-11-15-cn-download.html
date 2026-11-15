@@ -1,0 +1,87 @@
+---
+layout: default
+permalink: /cn/download
+lang: zh-CN
+locale: cn
+title: 拍照试妆 — 成就自己的美
+description: 照着任意照片里的妆容、发型、配饰，在自己自拍上试一试。几秒出效果。
+og_title: 拍照试妆 — 成就自己的美
+og_description: 照着任意照片里的妆容、发型、配饰，在自己自拍上试一试。
+nav: download
+scripts: shell
+extra_css:
+  - /assets/download.css
+page_js: /js/pages/download.js
+---
+<header class="hero">
+  <div class="hero-copy">
+    <p class="brand">拍照试妆</p>
+    <h1>成就自己的美</h1>
+    <p class="hero-lead">把照片里的妆容、发型或配饰等，同步到自拍照上。</p>
+    {% include download-store-ctas.html %}
+  </div>
+  <div class="hero-visual">
+    <div class="phone">
+      <img src="{{ '/assets/screenshots/step5-result.jpg' | relative_url }}" alt="拍照试妆效果示意" width="900" height="1955" fetchpriority="high">
+    </div>
+  </div>
+</header>
+
+<section class="how" id="how">
+  <p class="section-label reveal">怎么用</p>
+  <h2 class="section-title reveal">三步，换一副新妆</h2>
+  <p class="section-lead reveal">选一张参考图，再选自己的自拍，勾上想试的部位就行。</p>
+
+  <div class="steps">
+    <article class="step reveal">
+      <div class="step-phone">
+        <img src="{{ '/assets/screenshots/step1-origin.jpg' | relative_url }}" alt="选择想试的妆" width="900" height="1955" loading="lazy">
+      </div>
+      <span class="step-num">1</span>
+      <h3>选个喜欢的妆</h3>
+      <p>随便挑一张你心动的妆容或造型照。</p>
+    </article>
+    <article class="step reveal">
+      <div class="step-phone">
+        <img src="{{ '/assets/screenshots/step2-reference.jpg' | relative_url }}" alt="选择你的自拍" width="900" height="1955" loading="lazy">
+      </div>
+      <span class="step-num">2</span>
+      <h3>放上自己的照片</h3>
+      <p>从相册挑一张正脸清晰的自拍。</p>
+    </article>
+    <article class="step reveal">
+      <div class="step-phone">
+        <img src="{{ '/assets/screenshots/step3-option.jpg' | relative_url }}" alt="勾选要试的部位" width="900" height="1955" loading="lazy">
+      </div>
+      <span class="step-num">3</span>
+      <h3>开始试妆</h3>
+      <p>整妆一起试，也可以只改头发、嘴唇或帽子。</p>
+    </article>
+  </div>
+</section>
+
+<section class="compare-section">
+  <div class="compare">
+    <div class="compare-visual reveal">
+      <div class="phone">
+        <img src="{{ '/assets/screenshots/step6-compare.jpg' | relative_url }}" alt="试妆前后对比" width="900" height="1955" loading="lazy">
+      </div>
+    </div>
+    <div class="compare-copy">
+      <p class="section-label reveal">对比</p>
+      <h2 class="section-title reveal">滑动看看差别</h2>
+      <p class="section-lead reveal">原图和试妆结果并排对照。满意就发给朋友看看。</p>
+      <ul class="feature-list reveal">
+        <li>想试哪试哪 —— 眉、眼、发、配饰或整妆</li>
+        <li>左右、上下两种对比方式</li>
+        <li>照片只用来完成本次试妆</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2 class="section-title reveal">要不要先试一妆？</h2>
+  <p class="section-lead reveal">iPhone、iPad 均可免费下载。</p>
+  {% include download-store-ctas.html reveal=true %}
+</div>

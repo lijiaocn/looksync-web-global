@@ -52,12 +52,71 @@
     animation: rise 0.9s ease-out 0.22s both;
 }
 
-.cta-row {
+.store-switch {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     gap: 1rem;
+    width: min(100%, 22rem);
     animation: rise 0.9s ease-out 0.32s both;
+}
+
+.store-tablist {
+    display: flex;
+    width: 100%;
+    padding: 0;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.store-tab {
+    appearance: none;
+    flex: 1 1 0;
+    border: none;
+    background: transparent;
+    color: var(--text-muted, #9a9aa3);
+    font-family: "Sora", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 0.75rem 1.1rem;
+    border-radius: 11px;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.store-tab[aria-selected="true"] {
+    color: var(--text, #f4f4f5);
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.store-tab:hover:not([aria-selected="true"]) {
+    color: var(--text, #f4f4f5);
+}
+
+.store-panel {
+    width: 100%;
+}
+
+.store-panel[hidden] {
+    display: none !important;
+}
+
+.store-panel .btn-store {
+    width: 100%;
+    min-height: 3.75rem;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.cta-band .store-switch {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn-store {
@@ -65,12 +124,14 @@
     align-items: center;
     gap: 0.75rem;
     padding: 0.85rem 1.4rem;
+    border: none;
     border-radius: 14px;
     background: #fff;
     color: #111;
     font-family: "Sora", sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
+    cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
@@ -311,8 +372,8 @@ section {
     margin: 0 auto 2rem;
 }
 
-.cta-band .cta-row {
-    justify-content: center;
+.cta-band .store-switch {
+    align-items: center;
 }
 
 /* Reveal on scroll */
@@ -375,8 +436,9 @@ section {
         margin-right: auto;
     }
 
-    .cta-row {
-        justify-content: center;
+    .store-switch {
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .steps {

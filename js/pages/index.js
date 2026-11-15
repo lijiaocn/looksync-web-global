@@ -65,7 +65,7 @@
       const { balance } = LS.getAuthState();
       if (balance !== null && balance <= 0) {
         LS.toast("You're out of credits.", "error");
-        location.href = "purchase.html";
+        location.href = "/purchase";
         return;
       }
 
@@ -85,7 +85,7 @@
     } catch (err) {
       if (err instanceof LS.ApiError && err.customCode === "INSUFFICIENT_BALANCE") {
         LS.toast("You're out of credits.", "error");
-        location.href = "purchase.html";
+        location.href = "/purchase";
         return;
       }
       if ((err?.code || "").includes("popup-closed") || (err?.code || "").includes("cancelled") || (err?.code || "").includes("network")) {

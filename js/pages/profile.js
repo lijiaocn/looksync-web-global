@@ -74,7 +74,7 @@
           <div class="balance-box">
             <span class="muted">Credits</span>
             <strong id="balance-value">${balance.credits}</strong>
-            <a class="btn btn-small btn-primary" href="purchase.html">Get more</a>
+            <a class="btn btn-small btn-primary" href="/purchase">Get more</a>
           </div>
         </section>
 

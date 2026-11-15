@@ -1,12 +1,16 @@
 ---
 layout: default
+permalink: /support
 title: LookSync — Support
 description: Get help with LookSync. Contact support and find privacy information.
 scripts: shell
 nav: support
+locale_alt: /cn/support
+locale_cn_text: 针对中国大陆地区用户的技术支持
 ---
 <main class="doc-main">
             <header class="doc-header">
+                {% include locale-switch.html %}
                 <p class="doc-label">Help</p>
                 <h1>Technical Support</h1>
                 <p>Questions about LookSync? Reach out anytime.</p>
@@ -23,7 +27,7 @@ nav: support
                 <h2>Privacy</h2>
                 <p>Photos you upload are stored on our cloud servers to perform try-on / look synchronization. Reference images stay until you delete them; your photos and result images are kept for 7 days (or until you delete them sooner). Deletion is permanent. Details are in our Privacy Policy under Uploaded Photos and Images.</p>
                 <div class="panel">
-                    <p>Read the full policy: <a href="privacy.html#uploaded-photos">Privacy Policy — Uploaded Photos</a></p>
+                    <p>Read the full policy: <a href="{{ '/privacy' | relative_url }}#uploaded-photos">Privacy Policy — Uploaded Photos</a></p>
                 </div>
             </section>
         </main>

@@ -14,7 +14,7 @@
   let stopped = false;
 
   const CREDITS_LINK = `
-    <a class="result-head-credits" href="purchase.html" aria-label="Get more credits">
+    <a class="result-head-credits" href="/purchase" aria-label="Get more credits">
       <svg class="result-head-credits-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none"></circle>
         <circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none"></circle>

@@ -1,0 +1,9 @@
+{% if page.locale_alt %}
+<p class="locale-switch">
+  {% if page.locale == 'cn' %}
+  <a href="{{ page.locale_alt | relative_url }}">{{ page.locale_en_text }}</a>
+  {% else %}
+  <a href="{{ page.locale_alt | relative_url }}">{{ page.locale_cn_text }}</a>
+  {% endif %}
+</p>
+{% endif %}
