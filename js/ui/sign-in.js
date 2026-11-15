@@ -158,7 +158,9 @@
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
         const email = String(form.email.value || "").trim();
-        const password = String(form.password.value || "");
+        const password = String(form.password.value || "").trim();
+        form.email.value = email;
+        form.password.value = password;
         if (!email || !password) {
           showError("Enter your email and password.");
           return;

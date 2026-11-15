@@ -9,11 +9,11 @@
   };
 
   LS.signInWithEmail = function (email, password) {
-    return LS.auth.signInWithEmailAndPassword(email, password);
+    return LS.auth.signInWithEmailAndPassword(String(email || "").trim(), String(password || "").trim());
   };
 
   LS.createAccountWithEmail = function (email, password) {
-    return LS.auth.createUserWithEmailAndPassword(email, password);
+    return LS.auth.createUserWithEmailAndPassword(String(email || "").trim(), String(password || "").trim());
   };
 
   LS.signOut = function () {
