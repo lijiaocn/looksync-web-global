@@ -85,7 +85,7 @@
         : `<div class="history-pending">${statusLabel(item.status)}</div>`;
       return `
         <article class="history-card" data-id="${item.id}">
-          <a class="history-media" href="result.html?id=${encodeURIComponent(item.id)}">
+          <a class="history-media" href="/result?id=${encodeURIComponent(item.id)}">
             ${media}
             <span class="history-status status-${item.status}">${statusLabel(item.status)}</span>
           </a>

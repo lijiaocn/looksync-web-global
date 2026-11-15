@@ -6,7 +6,7 @@ baseurl: ""
 # Bump when local CSS/JS change to bust browser cache.
 asset_version: "20261115d"
 
-# Keep existing *.html URLs (canonicals / sitemap / app links).
+# Pages set explicit permalinks without .html when needed.
 permalink: /:path:output_ext
 
 exclude:

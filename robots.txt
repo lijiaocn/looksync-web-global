@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /profile
-Disallow: /history.html
-Disallow: /result.html
+Disallow: /history
+Disallow: /result
 
 Sitemap: https://looksync.app/sitemap.xml

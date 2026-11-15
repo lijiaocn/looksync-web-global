@@ -130,7 +130,7 @@
           <span class="account-name">${safeName}</span>
         </button>
         <div class="account-dropdown" hidden>
-          <a href="history.html">My try-ons</a>
+          <a href="/history">My try-ons</a>
           <a href="/profile">Account</a>
           <button data-act="signout">Sign out</button>
         </div>

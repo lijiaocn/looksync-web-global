@@ -81,7 +81,7 @@
       const originalId = await LS.uploadOriginal(originalFile);
       setProgress(3);
       const { syncId } = await LS.createSync(referenceId, originalId, scopes);
-      location.href = `result.html?id=${encodeURIComponent(syncId)}`;
+      location.href = `/result?id=${encodeURIComponent(syncId)}`;
     } catch (err) {
       if (err instanceof LS.ApiError && err.customCode === "INSUFFICIENT_BALANCE") {
         LS.toast("You're out of credits.", "error");

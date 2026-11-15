@@ -44,9 +44,9 @@ python3 -m http.server 8080 --directory _site
 | `_posts/*-cn-download.html` | `/cn/download` | shell | 顶栏账户 | index（大陆 App 下载页） |
 | `about.html` | `/about.html` | — | — | 重定向到 download |
 | `_posts/*-purchase.html` | `/purchase` | app | 顶栏账户 | index |
-| `result.html` | `/result.html?id=` | app | 是 | noindex |
+| `result.html` | `/result?id=` | app | 是 | noindex |
 | `_posts/*-profile.html` | `/profile` | app | 是 | noindex |
-| `history.html` | `/history.html` | app | 是 | noindex |
+| `history.html` | `/history` | app | 是 | noindex |
 | `_posts/*-privacy.html` | `/privacy` | shell | 顶栏账户 | index |
 | `_posts/*-cn-privacy.html` | `/cn/privacy` | shell | 顶栏账户 | index（大陆隐私政策） |
 | `_posts/*-support.html` | `/support` | shell | 顶栏账户 | index |
